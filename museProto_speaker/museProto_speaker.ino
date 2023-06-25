@@ -52,10 +52,10 @@ extern "C"
 #define SCL 23
 
 //Buttons
-#define MU GPIO_NUM_12      // short => mute/unmute  long => stop (deep sleep)
-#define VM GPIO_NUM_32      // short => volume down  long => previous station
-#define VP GPIO_NUM_19      // short => volume up   long => next station
-#define STOP GPIO_NUM_12    // for wake up
+#define MU GPIO_NUM_32      // short => mute/unmute  long => stop (deep sleep)
+#define VM GPIO_NUM_4      // short => volume down  long => previous station
+#define VP GPIO_NUM_18      // short => volume up   long => next station
+// #define STOP GPIO_NUM_12    // for wake up
 #define GAIN GPIO_NUM_23
 
 //Amp power enable
@@ -75,7 +75,7 @@ extern "C"
 #define btM 0
 #define sdM 1
 
-#define maxVol 40
+#define maxVol 20
 
 uint8_t vplus = 0, vmoins = 0, vmode = 0;
 uint8_t vmute = 0;
@@ -539,7 +539,7 @@ void setup()
     uint8_t mac[6];
     char dev_name[30 ];
     esp_read_mac((uint8_t *)&mac, ESP_MAC_WIFI_STA);
-    sprintf(dev_name, "MUSE_SPEAKER-%x%x%x",mac[3],mac[4],mac[5]);
+    sprintf(dev_name, "MUSICBOX_SIMON-%x%x%x",mac[3],mac[4],mac[5]);
     printf("%s\n",dev_name);
     esp_bt_dev_set_device_name(dev_name);
 
@@ -637,8 +637,8 @@ static int b0 = -1, b1 = -1, b2 = -1;
   if((b2 > 0) && (b2 > veryLongPress))
     {
       b2 = -1;
-      esp_sleep_enable_ext0_wakeup(STOP,LOW);    
-      esp_deep_sleep_start();
+      // esp_sleep_enable_ext0_wakeup(STOP,LOW);    
+      // esp_deep_sleep_start();
     }     
       
 //      
