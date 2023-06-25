@@ -600,7 +600,6 @@ static int b0 = -1, b1 = -1, b2 = -1;
 //volume change
    if((vol != oldVol))
   {
-      beep();
       oldVol = vol;  
       printf("vol = %d\n",vol);
       audio.setVolume(vol);
